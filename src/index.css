@@ -1,8 +1,17 @@
 :root {
-  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
-  line-height: 1.5;
-  color: #111827;
-  background-color: #f3f6fb;
+  --header: #1c2118;
+  --lime: #c5d63a;
+  --lime-dark: #b4c430;
+  --page: #eaf6e6;
+  --card: #ffffff;
+  --text: #1a1a1a;
+  --muted: #8b8b8b;
+  --checkbox: #c9dbb0;
+  --shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.4;
+  color: var(--text);
+  background-color: var(--page);
 }
 
 * {

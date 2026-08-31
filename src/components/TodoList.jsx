@@ -1,6 +1,15 @@
 import TodoItem from './TodoItem'
 
-function TodoList({ tasks, onToggle, onDelete }) {
+function TodoList({
+  tasks,
+  draggedId,
+  onToggle,
+  onDelete,
+  onEdit,
+  onDragStart,
+  onDragOver,
+  onDrop,
+}) {
   if (tasks.length === 0) {
     return <p className="empty">No tasks to show.</p>
   }
@@ -11,8 +20,13 @@ function TodoList({ tasks, onToggle, onDelete }) {
         <TodoItem
           key={task.id}
           task={task}
+          isDragging={draggedId === task.id}
           onToggle={onToggle}
           onDelete={onDelete}
+          onEdit={onEdit}
+          onDragStart={onDragStart}
+          onDragOver={onDragOver}
+          onDrop={onDrop}
         />
       ))}
     </ul>

@@ -11,8 +11,11 @@ function TodoInput({ text, onTextChange, onAdd }) {
         placeholder="Add a new task..."
         value={text}
         onChange={(event) => onTextChange(event.target.value)}
+        aria-label="New task"
       />
-      <button type="submit">Add Task</button>
+      <button type="submit" className="add-btn" aria-label="Add task">
+        +
+      </button>
     </form>
   )
 }

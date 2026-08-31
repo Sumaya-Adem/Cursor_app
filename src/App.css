@@ -1,90 +1,113 @@
-.page {
+.app {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
+  background: var(--page);
+}
+
+.header {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 24px;
+  gap: 12px;
+  background: var(--header);
+  padding: 14px 20px;
 }
 
-.card {
-  width: 100%;
-  max-width: 520px;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
-  padding: 28px 24px;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+.logo {
+  width: 28px;
+  height: 28px;
+  border: 2px solid #ffffff;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
 }
 
-h1 {
-  margin: 0 0 4px;
-  font-size: 1.8rem;
-  text-align: center;
-  color: #111827;
+.logo svg {
+  width: 16px;
+  height: 16px;
 }
 
-.subtitle {
-  margin: 0 0 20px;
-  text-align: center;
-  color: #6b7280;
+.header h1 {
+  margin: 0;
+  font-size: 1.7rem;
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--lime);
 }
 
 .todo-input {
   display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
+  align-items: center;
+  gap: 10px;
+  background: var(--lime);
+  padding: 12px 16px;
 }
 
 .todo-input input {
   flex: 1;
   min-width: 0;
-  padding: 10px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  font-size: 1rem;
-}
-
-.todo-input button,
-.filter-buttons button,
-.clear-btn,
-.delete-btn {
+  height: 40px;
+  padding: 0 12px;
   border: none;
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-size: 0.95rem;
-  font-weight: 600;
+  border-radius: 4px;
+  font-size: 1rem;
+  background: #ffffff;
+}
+
+.todo-input input:focus {
+  outline: 2px solid #6b8cff;
+  outline-offset: 0;
+}
+
+.add-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+  background: var(--lime);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  font-size: 1.7rem;
+  line-height: 1;
+  color: #111;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
-.todo-input button {
-  background: #2563eb;
-  color: #ffffff;
-  white-space: nowrap;
+.add-btn:hover {
+  background: var(--lime-dark);
 }
 
-.todo-input button:hover {
-  background: #1d4ed8;
+.todo-body {
+  flex: 1;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 20px 16px 32px;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
 }
 
 .counters {
   display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 16px;
-  padding: 10px 12px;
-  background: #f3f4f6;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  color: #374151;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.85rem;
+  color: #4b5a45;
 }
 
 .todo-filters {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 16px;
   flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
 }
 
 .filter-buttons {
@@ -92,28 +115,41 @@ h1 {
   gap: 6px;
 }
 
+.filter-buttons button,
+.clear-btn,
+.delete-btn {
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
 .filter-buttons button {
-  background: #e5e7eb;
-  color: #374151;
+  background: #ffffff;
+  color: #3d4a38;
+  box-shadow: var(--shadow);
 }
 
 .filter-buttons button.active,
 .filter-buttons button:hover {
-  background: #2563eb;
-  color: #ffffff;
+  background: var(--header);
+  color: var(--lime);
 }
 
 .clear-btn {
-  background: #fee2e2;
-  color: #b91c1c;
+  background: #ffffff;
+  color: #5a5a5a;
+  box-shadow: var(--shadow);
 }
 
 .clear-btn:hover:not(:disabled) {
-  background: #fecaca;
+  color: #111;
 }
 
 .clear-btn:disabled {
-  opacity: 0.5;
+  opacity: 0.45;
   cursor: not-allowed;
 }
 
@@ -121,76 +157,121 @@ h1 {
   list-style: none;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .todo-item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 10px 0;
-  border-bottom: 1px solid #f3f4f6;
-}
-
-.todo-item label {
-  display: flex;
-  align-items: center;
   gap: 10px;
+  background: var(--card);
+  border-radius: 6px;
+  padding: 12px 14px;
+  box-shadow: var(--shadow);
+}
+
+.todo-item.completed {
+  opacity: 0.55;
+}
+
+.todo-item.dragging {
+  opacity: 0.4;
+}
+
+.drag-handle {
+  display: grid;
+  grid-template-columns: 4px 4px;
+  gap: 3px;
+  padding: 4px 2px;
+  cursor: grab;
+  color: #9aa392;
+  border: none;
+  background: transparent;
+}
+
+.drag-handle span {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.todo-item input[type='checkbox'] {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--checkbox);
+  border-radius: 2px;
+  background: #ffffff;
+  margin: 0;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.todo-item input[type='checkbox']:checked {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%235a6b4a' stroke-width='2.4' d='M3 8.2 6.4 11.5 13 4.5'/%3E%3C/svg%3E");
+  background-size: 12px 12px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.task-text {
+  flex: 1;
   min-width: 0;
-}
-
-.todo-item span {
   word-break: break-word;
+  color: var(--text);
+  cursor: text;
 }
 
-.todo-item.completed span {
+.todo-item.completed .task-text {
   text-decoration: line-through;
-  color: #9ca3af;
+  color: var(--muted);
+}
+
+.edit-input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid #6b8cff;
+  border-radius: 2px;
+  padding: 4px 6px;
+  font-size: 1rem;
+  outline: none;
 }
 
 .delete-btn {
-  background: #f3f4f6;
-  color: #4b5563;
-  padding: 8px 12px;
+  background: transparent;
+  color: #7a7a7a;
+  padding: 4px 8px;
 }
 
 .delete-btn:hover {
-  background: #fee2e2;
-  color: #b91c1c;
+  color: #111;
 }
 
 .empty {
-  margin: 8px 0 0;
+  margin: 24px 0 0;
   text-align: center;
-  color: #6b7280;
+  color: #6d7a68;
 }
 
-@media (max-width: 520px) {
-  .page {
-    padding: 16px;
-    align-items: flex-start;
+@media (max-width: 600px) {
+  .todo-body {
+    padding: 16px 12px 28px;
   }
 
-  .card {
-    padding: 20px 16px;
-  }
-
-  .todo-input,
-  .counters,
-  .todo-filters {
+  .toolbar {
     flex-direction: column;
-  }
-
-  .todo-input button,
-  .clear-btn {
-    width: 100%;
+    align-items: stretch;
   }
 
   .filter-buttons {
     width: 100%;
   }
 
-  .filter-buttons button {
+  .filter-buttons button,
+  .clear-btn {
     flex: 1;
   }
 }
